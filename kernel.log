@@ -1,0 +1,70 @@
+inside init
+starting connection
+fetching one from: 
+SELECT VERSION();
+('PostgreSQL 10.4 on x86_64-apple-darwin14.5.0, compiled by Apple LLVM version 7.0.0 (clang-700.1.76), 64-bit',)
+inside init
+starting connection
+fetching one from: 
+SELECT VERSION();
+('PostgreSQL 10.4 on x86_64-apple-darwin14.5.0, compiled by Apple LLVM version 7.0.0 (clang-700.1.76), 64-bit',)
+inside init
+starting connection
+fetching one from: 
+SELECT VERSION();
+('PostgreSQL 10.4 on x86_64-apple-darwin14.5.0, compiled by Apple LLVM version 7.0.0 (clang-700.1.76), 64-bit',)
+fetching all from: 
+SELECT * FROM Blog
+inside init
+starting connection
+fetching one from: 
+SELECT VERSION();
+('PostgreSQL 10.4 on x86_64-apple-darwin14.5.0, compiled by Apple LLVM version 7.0.0 (clang-700.1.76), 64-bit',)
+fetching all from: 
+SELECT * FROM Blog
+fetching all from: 
+SELECT * FROM Blog;
+fetching all from: 
+select * from blog;
+inside init
+starting connection
+fetching one from: 
+SELECT VERSION();
+('PostgreSQL 10.4 on x86_64-apple-darwin14.5.0, compiled by Apple LLVM version 7.0.0 (clang-700.1.76), 64-bit',)
+fetching all from: 
+SELECT * FROM Blog;
+fetching all from: 
+SELECT * FROM build-a-blog;
+inside init
+starting connection
+fetching one from: 
+SELECT VERSION();
+('PostgreSQL 10.4 on x86_64-apple-darwin14.5.0, compiled by Apple LLVM version 7.0.0 (clang-700.1.76), 64-bit',)
+inside init
+starting connection
+fetching one from: 
+SELECT VERSION();
+('PostgreSQL 10.4 on x86_64-apple-darwin14.5.0, compiled by Apple LLVM version 7.0.0 (clang-700.1.76), 64-bit',)
+inside init
+starting connection
+fetching one from: 
+SELECT VERSION();
+('PostgreSQL 10.4 on x86_64-apple-darwin14.5.0, compiled by Apple LLVM version 7.0.0 (clang-700.1.76), 64-bit',)
+fetching all from: 
+CREATE USER marcea WITH PASSWORD 'sparkles' SUPERUSER;
+CREATE DATABASE build-a-blog;
+SET ROLE marcea;
+fetching all from: 
+CREATE USER marcea WITH PASSWORD 'sparkles' SUPERUSER;
+CREATE DATABASE buildablog;
+SET ROLE marcea;
+starting connection
+inside init
+starting connection
+fetching one from: 
+SELECT VERSION();
+('PostgreSQL 10.4 on x86_64-apple-darwin14.5.0, compiled by Apple LLVM version 7.0.0 (clang-700.1.76), 64-bit',)
+fetching all from: 
+SELECT * FROM buildablog;
+fetching all from: 
+SELECT * FROM Blog;

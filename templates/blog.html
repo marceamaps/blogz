@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>New Blog Entry!</h1>
+    <form method='post'>
+    <span id="blog_title">
+        <label>
+            Title for your new blog:
+            <input type="text" name='blog_title' />
+        </label>
+    </span>
+
+    <span id ="blog_content">
+            <label>
+                Your new blog:
+                <textarea name="blog_content" > </textarea>
+                <input type="submit" value='Add Blog Entry' id="blog_entry" />
+            </label>
+    </span>
+    </form>
+
+    <style>
+        label { 
+            display: block;
+        }
+        #blog_title {
+            display: block;
+            margin: 10px 0;
+            width: 540px;
+            height: 120px;
+        }
+        #blog_content {
+            display: block;
+            margin: 5px 0;
+            width: 540px;
+            height: 120px;
+        }
+        #blog_entry {
+            display: block;
+            margin: 10px 0;
+            width: 100px;
+            height: 120px;
+        }
+    </style>
+
+    <hr />
+
+    {% if blogs|length == 0 %}
+    <p>No blogs yet</p>
+    {% else %}
+
+        <ul>
+            {% for blog in blogs %}
+                <!-- {% for content in contents %} -->
+                <h1>{{ blog.title }}</h1>
+                    <!-- <h2>{{ blog.content }}</h2> -->
+                <!-- <form method="POST" action="/blog_page" style="display:inline-block;">
+                    <input type="hidden" name="blog-id" value="{{blog.id}}" /> 
+                </form> -->
+            {% endfor %}
+        </ul>
+
+    {% endif %}
+
+    <hr />
+
+
+{% endblock %}
