@@ -41,6 +41,14 @@
             width: 100px;
             height: 120px;
         }
+        h2{
+            display:block;
+            font-family: arial;
+        }
+        h4 {
+            display: block;
+            font-family: arial;
+        }
     </style>
 
     <hr />
@@ -49,20 +57,18 @@
     <p>No blogs yet</p>
     {% else %}
 
-        <ul>
             {% for blog in blogs %}
-                <!-- {% for content in contents %} -->
-                <h1>{{ blog.title }}</h1>
-                    <!-- <h2>{{ blog.content }}</h2> -->
-                <!-- <form method="POST" action="/blog_page" style="display:inline-block;">
-                    <input type="hidden" name="blog-id" value="{{blog.id}}" /> 
-                </form> -->
+                <h2>{{ blog.title }}</h2>
+
+                <h4>{{ blog.content }}</h4>
+
+                <hr>
             {% endfor %}
-        </ul>
+
 
     {% endif %}
 
-    <hr />
+
 
 
 {% endblock %}
