@@ -56,8 +56,8 @@ def new_post():
 
 @app.route('/individual_blog', methods=['POST', 'GET'])
 
-    blog_title = request.form['blog_title'
-    blog_content = request.form['blog_content']
+    blog_title = request.args.get('blog_title')
+    blog_content = request.args.get('blog_content')
 
     # task_id = int(request.form['task-id'])
     # task = Task.query.get(task_id)
