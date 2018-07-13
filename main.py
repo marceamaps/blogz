@@ -21,16 +21,6 @@ class Blog(db.Model):
 @app.route('/blog', methods=['POST', 'GET'])
 def index():
 
-    # if request.method == 'POST':
-    #     blog_title = request.form['blog_title']
-    #     blog_content = request.form['blog_content']
-    #     new_blog_title = Blog(blog_title, blog_content)
-
-    #     db.session.add(new_blog_title)
-        
-    #     db.session.commit()
-
-    #     return redirect ('/blog')
 
     blogs = Blog.query.all()
     return render_template('blog.html', title="Build a Blog!", blogs=blogs)
@@ -54,17 +44,15 @@ def new_post():
 
     return render_template('newpost.html', title="Build a Blog!")
 
-@app.route('/individual_blog', methods=['POST', 'GET'])
+@app.route('/individual_blog/<blog_id>', methods=['POST', 'GET'])
+def individual_post(blog_id):
 
-    blog_title = request.args.get('blog_title')
-    blog_content = request.args.get('blog_content')
-
-    # task_id = int(request.form['task-id'])
-    # task = Task.query.get(task_id)
-    # db.session.add(task)
-    # db.session.commit()
-
-    return render_template('individual_blogs.html', title=title, blog=blog)
+    #get the blog from the database using the ID!!!!
+    blog_id = Blog.query.filter_by(id=blog_id).first()
+    indi_title = blog_id.title
+    indi_content = blog_id.content 
+    
+    return render_template('individual_blogs.html', title=indi_title, content=indi_content)
 
 
 if __name__ == '__main__':

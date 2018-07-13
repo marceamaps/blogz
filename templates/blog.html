@@ -16,7 +16,10 @@
     {% else %}
 
             {% for blog in blogs %}
-                <h2>{{ blog.title }}</h2>
+            <a href= "{{ '/individual_blog/%s'%blog.id }}" > 
+                <h2>{{ blog.title }}</h2> 
+            </a>
+        
 
                 <p>{{ blog.content }}</h4>
 
