@@ -1,12 +1,25 @@
 <!doctype html>
 <html>
     <head>
-        <title>{{title}}</title>
+        <title>{{ title }}</title>
     </head>
+    
+    <a href='/newpost' class="new-post">New Blog Post</a>
+    <a href='/blog' class="blog-page">Blog</a>
+    
 <body>
 
     {% block content %}
     {% endblock %}
 
 </body>
+<style>
+    #new-post {
+        display:block;
+        margin-right: 100px;
+    }
+    #blog-page {
+        display: block;
+    }
+</style>
 </html>

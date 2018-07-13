@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>New Blog Entry!</h1>
+    <form method='post'>
+    <span id="blog_title">
+        <label>
+            Title for your new blog:
+            <input type="text" name='blog_title' />
+        </label>
+    </span>
+
+    <span id ="blog_content">
+            <label>
+                Your new blog:
+                <textarea name="blog_content" > </textarea>
+                <input type="submit" value='Add Blog Entry' id="blog_entry" />
+            </label>
+    </span>
+    </form>
+    <style>
+            label { 
+                display: block;
+            }
+            #blog_title {
+                display: block;
+                margin: 10px 0;
+            }
+            #blog_content {
+                display: block;
+                margin: 10px 0;
+            }
+            #blog_entry {
+                display: block;
+                margin: 10px 0;
+                width: 100px;
+                height: 120px;
+            }
+    </style>
+
+{% endblock %}

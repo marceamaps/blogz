@@ -1,57 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>New Blog Entry!</h1>
-    <form method='post'>
-    <span id="blog_title">
-        <label>
-            Title for your new blog:
-            <input type="text" name='blog_title' />
-        </label>
-    </span>
-
-    <span id ="blog_content">
-            <label>
-                Your new blog:
-                <textarea name="blog_content" > </textarea>
-                <input type="submit" value='Add Blog Entry' id="blog_entry" />
-            </label>
-    </span>
-    </form>
 
     <style>
-        label { 
-            display: block;
-        }
-        #blog_title {
-            display: block;
-            margin: 10px 0;
-            width: 540px;
-            height: 120px;
-        }
-        #blog_content {
-            display: block;
-            margin: 5px 0;
-            width: 540px;
-            height: 120px;
-        }
-        #blog_entry {
-            display: block;
-            margin: 10px 0;
-            width: 100px;
-            height: 120px;
-        }
         h2{
             display:block;
-            font-family: arial;
         }
         h4 {
             display: block;
-            font-family: arial;
         }
     </style>
-
-    <hr />
 
     {% if blogs|length == 0 %}
     <p>No blogs yet</p>
@@ -60,7 +18,7 @@
             {% for blog in blogs %}
                 <h2>{{ blog.title }}</h2>
 
-                <h4>{{ blog.content }}</h4>
+                <p>{{ blog.content }}</h4>
 
                 <hr>
             {% endfor %}
