@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://localhost/blogz' 
 db = SQLAlchemy(app)
-#do I need a secret key?
+app.secret_key = 'y337kGcys&zP3B' #stole this from get-it-done, can I do that?
 
 class Blog(db.Model):
 
@@ -25,6 +25,7 @@ class User(db.Model):
 
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -60,20 +61,31 @@ def login():
 
     return render_template('login.html')
 
+
+@app.before_request
+def require_login():
+    allowed_routes = ['login', 'signup', 'blogs', 'index']
+    if request.endpoint not in allowed_routes and 'email' not in session:
+        return redirect ('/login')
+
 @app.route('/blogs', methods=['POST', 'GET'])
-def index():
+def blogs():
 
     blogs = Blog.query.all()
     return render_template('blog.html', title="Build a Blog!", blogs=blogs)
 
-# def logout():
 
-# We'll have a logout function that handles a POST request to 
-# /logout and redirects the user to /blog after deleting the 
-# username from the session.
+@app.route('/logout', methods=['POST'])
+def logout():
+    del session['username']
+    return redirect('/')
 
-# @app.route('index')
-# def index():
+
+@app.route('/', methods=['POST', 'GET'])
+def index():
+
+    return render_template('index.html')
+
 
 @app.route('/newpost', methods=['POST', 'GET'])
 def new_post():
