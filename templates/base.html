@@ -4,9 +4,11 @@
         <title>{{ title }}</title>
     </head>
 
-    <a href='/newpost' class="new-post">New Blog Post</a>
+    <a href='/newpost' class="new-post">New Post</a>
+    <a href='/logout' class="logout">Logout</a>
     <hr>
-    <a href='/blog' class="blog-page">Blog</a>
+    <div class='blog-page'><a href='/blog' class="blog-page">Blog</a></div>
+
     
 <body>
 
@@ -15,12 +17,17 @@
 
 </body>
 <style>
-    #new-post {
-        display:block;
-        margin-right: 100px;
+    .new-post {
+        padding: 5px;
+        border: 50px;
     }
-    #blog-page {
-        display: block;
+    .blog-page {
+        padding: 5px;
     }
+    .logout { 
+        padding: 25px;
+
+    }
+    
 </style>
 </html>
