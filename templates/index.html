@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+        h2{
+            display:block;
+        }
+        h4 {
+            display: block;
+        }
+        p.written {
+            font-style: italic;
+        }
+
+    </style>
+
+{% if users|length == 0 %}
+<p>No users yet</p>
+{% else %}
+
+        {% for user in users %}
+        <a href= "{{ '/blog/%s'%user.id }}" >
+            <h2>{{ user.username }}</h2> 
+        </a>
+
+            <hr>
+        {% endfor %}
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+{% endblock %}

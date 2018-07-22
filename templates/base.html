@@ -8,10 +8,19 @@
     <a href='/newpost' class="new-post">New Post</a>
     <a href='/login' class="login">Login</a>
     <a href='/logout' class="logout">Logout</a>
-    <hr>
     <a href='/blog' class="blog-page">Blog</a>
+    <hr>
 
     
+    <div class="container">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category,message in messages %}
+            <div class="alert alert-{{category}} alert-dismissible">
+                {{message|safe}}</div>
+            {% endfor %}
+        {% endwith %}
+
 <body>
 
     {% block content %}
@@ -19,6 +28,9 @@
 
 </body>
 <style>
+    a {
+        font-family: Georgia;
+    }
     .home {
     padding: 8px;
     }

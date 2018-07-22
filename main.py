@@ -30,18 +30,28 @@ def signup():
         username = request.form['username']
         password = request.form['password']
         verify = request.form['verify']
-
-        # to do - validate users data
-
+        
         existing_user = User.query.filter_by(username=username).first()
-        if not existing_user:
-            new_user = User(username=username, password=password)
-            db.session.add(new_user)
-            db.session.commit()
-            session['username'] = username
-            return redirect('/')
+
+        if not username:
+            flash('One or more fields is empty')
+        elif not password:
+            flash('One or more fields is empty')
+        elif not verify:
+            flash('One or more fields is empty')
+        elif password != verify:
+            flash('Passwords do not match')
+        elif existing_user is True: 
+            flash('That username already exists')
+        elif len(username) < 3 or len(username) > 20:
+            flash('Please make the username between 3-20 characters') 
         else:
-            flash("The email <strong>{0}</strong> is already registered".format(username), 'danger')
+            if not existing_user:
+                new_user = User(username=username, password=password)
+                db.session.add(new_user)
+                db.session.commit()
+                session['username'] = username
+                return redirect('/newpost')
 
     return render_template('signup.html')
 
@@ -52,12 +62,16 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
-        if user and password:
+        if user and (user.password == password):
             session['username'] = username
             flash("Logged in", 'info')
             return redirect('/newpost')
+        elif user and (user.password != password):
+            flash('User password incorrect, please try again', 'danger')
         else:
-            flash('User password incorrect, or user does not exist', 'danger')
+            if not user:
+                flash('User does not exist, please signup')
+                return redirect('/signup')
 
     return render_template('login.html')
 
@@ -65,25 +79,28 @@ def login():
 @app.before_request
 def require_login():
     allowed_routes = ['login', 'signup', 'blogs', 'index']
-    if request.endpoint not in allowed_routes and 'email' not in session:
+    if request.endpoint not in allowed_routes and 'username' not in session:
         return redirect ('/login')
 
-@app.route('/blogs', methods=['POST', 'GET'])
+@app.route('/blog', methods=['POST', 'GET'])
 def blogs():
 
     blogs = Blog.query.all()
-    return render_template('blog.html', title="Build a Blog!", blogs=blogs)
+    users = User.query.all()
+
+    return render_template('blog.html', blogs=blogs, users=users)
 
 
-@app.route('/logout', methods=['POST'])
+@app.route('/logout', methods=['POST', 'GET'])
 def logout():
     del session['username']
-    return redirect('/')
+    return redirect('/blog')
 
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
 
+    users = User.query.all()
     return render_template('index.html')
 
 
@@ -99,13 +116,15 @@ def new_post():
         
         db.session.commit()
 
-        return redirect ('/blog')
+        blog_id = new_blog_title.id
+
+        return redirect ('/blog/' + str(blog_id))
 
     blogs = Blog.query.all()
 
     return render_template('newpost.html', title="Build a Blog!")
 
-@app.route('/individual_blog/<blog_id>', methods=['POST', 'GET'])
+@app.route('/blog/<blog_id>', methods=['POST', 'GET'])
 def individual_post(blog_id):
 
     #get the blog from the database using the ID!!!!
